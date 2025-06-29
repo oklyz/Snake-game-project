@@ -2,3 +2,33 @@ a {
   color: black;
   text-decoration: none;
 }
+
+body {
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas:
+    "nav"
+    "main";
+
+  height: 100vh;
+}
+
+nav {
+  grid: "nav";
+}
+
+main {
+  grid: "main";
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 75vh;
+  width: 100vh;
+  display: grid;
+  grid-template-rows: repeat(14, 1fr);
+  grid-template-columns: repeat(14, 1fr);
+}
