@@ -1,8 +1,9 @@
 const container = document.querySelector('.container')
 const rows = 14
 const columns = 14
+const totalRowsColumns = rows * columns
 const totalboxes = []
-let = [10, 11, 12]
+let snake = [10, 11, 12]
 
 for (let i = 0; i < rows * columns; i++) {
   const newEl = document.createElement('div')
@@ -35,3 +36,12 @@ const drawSnake = () => {
     boxes[nums].style.backgroundColor = 'yellow'
   })
 }
+
+drawSnake()
+
+const foodFun = () => {
+  let food = [Math.floor(Math.random() * totalRowsColumns)]
+  boxes[food].style.backgroundColor = 'red'
+}
+
+foodFun()
