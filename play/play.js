@@ -41,3 +41,97 @@ const whiteFilter = totalboxes.filter((nums) => {
 whiteFilter.forEach((nums) => {
   boxes[nums].style.backgroundColor = 'white'
 })
+
+// const initializeGame = () => {
+//   while(true) {}
+//   drawSnake()
+//   moveSnake()
+// }
+
+const drawSnake = () => {
+  snake.forEach((nums) => {
+    boxes[nums].style.backgroundColor = 'yellow'
+  })
+}
+
+drawSnake()
+
+const foodFun = () => {
+  let food = [Math.floor(Math.random() * totalRowsColumns)]
+  boxes[food].style.backgroundColor = 'red'
+}
+
+foodFun()
+
+const moveSnake = () => {
+  const directionRight = 1
+  const directionDown = 14
+  const directionUp = -14
+  const directionLeft = -1
+  if (button === directionRight) {
+    snake.shift()
+    snake.push(snake[snake.length - 1] + directionRight)
+  } else if (button === directionLeft) {
+    snake.shift()
+    snake.push(snake[snake.length - 1] + directionLeft)
+  } else if (button === directionUp) {
+    snake.shift()
+    snake.push(snake[snake.length - 1] + directionUp)
+  } else if (button === directionDown) {
+    snake.shift()
+    snake.push(snake[snake.length - 1] + directionDown)
+  }
+}
+
+// moveSnake()
+console.log(snake[snake.length - 1] + 1)
+// console.log(snake)
+
+button[0].addEventListener('click', () => {
+  const shifr = snake.shift()
+  snake.push(snake[snake.length - 1] + 1)
+  blackFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'black'
+  })
+  whiteFilter.forEach((nums) => {
+    boxes[nums].style.backgroundColor = 'white'
+  })
+  drawSnake()
+})
+button[1].addEventListener('click', () => {
+  const shifr = snake.shift()
+  snake.push(snake[snake.length - 1] - 1)
+  blackFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'black'
+  })
+  whiteFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'white'
+  })
+  drawSnake()
+})
+button[2].addEventListener('click', () => {
+  const shifr = snake.shift()
+  snake.push(snake[snake.length - 1] + 14)
+  blackFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'black'
+  })
+  whiteFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'white'
+  })
+  drawSnake()
+})
+button[3].addEventListener('click', () => {
+  const shifr = snake.shift()
+  snake.push(snake[snake.length - 1] - 14)
+  blackFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'black'
+  })
+  whiteFilter.forEach((nums) => {
+    boxes[shifr].style.backgroundColor = 'white'
+  })
+  drawSnake()
+})
+// snake.shift()
+// snake.push(snake[snake.length] + 1)
+
+// console.log(snake[snake.length] + 1)
