@@ -2,6 +2,7 @@ const container = document.querySelector('.container')
 const rows = 14
 const columns = 14
 const totalboxes = []
+let = [10, 11, 12]
 
 for (let i = 0; i < rows * columns; i++) {
   const newEl = document.createElement('div')
@@ -28,3 +29,9 @@ const blackFilter = totalboxes.filter((nums) => {
 blackFilter.forEach((nums) => {
   boxes[nums].style.backgroundColor = 'black'
 })
+
+const drawSnake = () => {
+  snake.forEach((nums) => {
+    boxes[nums].style.backgroundColor = 'yellow'
+  })
+}
