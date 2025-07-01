@@ -90,44 +90,33 @@ console.log(snake[snake.length - 1] + 1)
 button[0].addEventListener('click', () => {
   const shifr = snake.shift()
   snake.push(snake[snake.length - 1] + 1)
+
+  drawSnake()
+})
+button[1].addEventListener('click', () => {
+  const shift = snake.shift()
+  snake.push(snake[snake.length - 1] - 1)
+  if (shift) drawSnake()
+})
+button[2].addEventListener('click', () => {
+  const shift = snake.shift()
+  snake.push(snake[snake.length - 1] + 14)
   blackFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'black'
+    boxes[shift].style.backgroundColor = 'black'
   })
   whiteFilter.forEach((nums) => {
     boxes[nums].style.backgroundColor = 'white'
   })
   drawSnake()
 })
-button[1].addEventListener('click', () => {
-  const shifr = snake.shift()
-  snake.push(snake[snake.length - 1] - 1)
-  blackFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'black'
-  })
-  whiteFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'white'
-  })
-  drawSnake()
-})
-button[2].addEventListener('click', () => {
-  const shifr = snake.shift()
-  snake.push(snake[snake.length - 1] + 14)
-  blackFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'black'
-  })
-  whiteFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'white'
-  })
-  drawSnake()
-})
 button[3].addEventListener('click', () => {
-  const shifr = snake.shift()
+  const shift = snake.shift()
   snake.push(snake[snake.length - 1] - 14)
   blackFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'black'
+    boxes[shift].style.backgroundColor = 'black'
   })
   whiteFilter.forEach((nums) => {
-    boxes[shifr].style.backgroundColor = 'white'
+    boxes[nums].style.backgroundColor = 'white'
   })
   drawSnake()
 })
@@ -135,12 +124,5 @@ button[3].addEventListener('click', () => {
 // snake.push(snake[snake.length] + 1)
 
 // console.log(snake[snake.length] + 1)
-const container = document.querySelector('.container')
-const rows = 14
-const columns = 14
 
-for (let i = 0; i < rows * columns; i++) {
-  const newEl = document.createElement('div')
-  newEl.setAttribute('class', 'boxes')
-  container.append(newEl)
-}
+console.log(KeyboardEvent.key)
