@@ -68,57 +68,69 @@ const moveSnake = () => {
   const directionDown = 14
   const directionUp = -14
   const directionLeft = -1
-  if (button === directionRight) {
-    snake.shift()
-    snake.push(snake[snake.length - 1] + directionRight)
-  } else if (button === directionLeft) {
-    snake.shift()
-    snake.push(snake[snake.length - 1] + directionLeft)
-  } else if (button === directionUp) {
-    snake.shift()
-    snake.push(snake[snake.length - 1] + directionUp)
-  } else if (button === directionDown) {
-    snake.shift()
-    snake.push(snake[snake.length - 1] + directionDown)
-  }
 }
 
+const checkDirection = () => {}
 // moveSnake()
 console.log(snake[snake.length - 1] + 1)
 // console.log(snake)
 
 button[0].addEventListener('click', () => {
-  const shifr = snake.shift()
-  snake.push(snake[snake.length - 1] + 1)
-
-  drawSnake()
+  const cannotTurnRight = snake[snake.length - 1] + 1
+  if (cannotTurnRight !== snake[snake.length - 2]) {
+    const shift = snake.shift()
+    snake.push(snake[snake.length - 1] + 1)
+    if (blackFilter.includes(shift)) {
+      boxes[shift].style.backgroundColor = 'black'
+    } else {
+      boxes[shift].style.backgroundColor = 'white'
+    }
+    drawSnake()
+  }
 })
 button[1].addEventListener('click', () => {
-  const shift = snake.shift()
-  snake.push(snake[snake.length - 1] - 1)
-  if (shift) drawSnake()
+  const cannotTurnleft = snake[snake.length - 1] - 1
+  if (cannotTurnleft !== snake[snake.length - 2]) {
+    const shift = snake.shift()
+    snake.push(snake[snake.length - 1] - 1)
+
+    if (blackFilter.includes(shift)) {
+      boxes[shift].style.backgroundColor = 'black'
+    } else {
+      boxes[shift].style.backgroundColor = 'white'
+    }
+  }
+  drawSnake()
 })
 button[2].addEventListener('click', () => {
-  const shift = snake.shift()
-  snake.push(snake[snake.length - 1] + 14)
-  blackFilter.forEach((nums) => {
-    boxes[shift].style.backgroundColor = 'black'
-  })
-  whiteFilter.forEach((nums) => {
-    boxes[nums].style.backgroundColor = 'white'
-  })
-  drawSnake()
+  const cannotTurnDown = snake[snake.length - 1] + 14
+  if (cannotTurnDown !== snake[snake.length - 2]) {
+    const shift = snake.shift()
+    snake.push(snake[snake.length - 1] + 14)
+    if (blackFilter.includes(shift)) {
+      boxes[shift].style.backgroundColor = 'black'
+    } else {
+      boxes[shift].style.backgroundColor = 'white'
+    }
+    drawSnake()
+  }
 })
 button[3].addEventListener('click', () => {
-  const shift = snake.shift()
-  snake.push(snake[snake.length - 1] - 14)
-  blackFilter.forEach((nums) => {
-    boxes[shift].style.backgroundColor = 'black'
-  })
-  whiteFilter.forEach((nums) => {
-    boxes[nums].style.backgroundColor = 'white'
-  })
-  drawSnake()
+  const cannotTurnUp = snake[snake.length - 1] - 14
+  if (cannotTurnUp !== snake[snake.length - 2]) {
+    const shift = snake.shift()
+    snake.push(snake[snake.length - 1] - 14)
+    if (blackFilter.includes(shift)) {
+      boxes[shift].style.backgroundColor = 'black'
+    } else {
+      boxes[shift].style.backgroundColor = 'white'
+    }
+    drawSnake()
+  }
+})
+
+document.addEventListener('keypress', (event) => {
+  console.log('key code: ', event.keyCode)
 })
 // snake.shift()
 // snake.push(snake[snake.length] + 1)
