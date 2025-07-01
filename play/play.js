@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const container = document.querySelector('.container')
 const rows = 14
 const columns = 14
@@ -136,14 +135,12 @@ button[3].addEventListener('click', () => {
 // snake.push(snake[snake.length] + 1)
 
 // console.log(snake[snake.length] + 1)
-=======
-const container = document.querySelector(".container")
+const container = document.querySelector('.container')
 const rows = 14
 const columns = 14
 
 for (let i = 0; i < rows * columns; i++) {
-  const newEl = document.createElement("div")
-  newEl.setAttribute("class", "boxes")
+  const newEl = document.createElement('div')
+  newEl.setAttribute('class', 'boxes')
   container.append(newEl)
 }
->>>>>>> 268c133b8bb8ee0838265214387a5dd76b296d3e
