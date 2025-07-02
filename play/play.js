@@ -6,6 +6,7 @@ const totalboxes = []
 let snake = [0, 1, 2]
 let intrevalId
 let food = Math.floor(Math.random() * totalRowsColumns)
+let gameIsRunning = true
 
 const button = document.querySelector("button")
 //// creating cells for board game
@@ -47,9 +48,10 @@ whiteFilter.forEach((nums) => {
 const initializeGame = () => {
   drawSnake()
   foodFun()
-  clearIntervalMove()
-  moveSnake()
-
+  if (gameIsRunning) {
+    clearIntervalMove()
+    moveSnake()
+  }
   console.log(food)
 }
 const drawSnake = () => {
@@ -66,7 +68,11 @@ const foodFun = () => {
   if (head === food) {
     food = Math.floor(Math.random() * totalRowsColumns)
     boxes[food].style.backgroundColor = "red"
-    snake.unshift(snake[0])
+    if (snake[0] - 1 !== snake[1]) {
+      snake.unshift(snake[0] - 1)
+    } else {
+      snake.unshift(snake[0] + 1)
+    }
   }
 }
 
@@ -89,9 +95,11 @@ const changeDirection = (direction, key) => {
             boxes[tail].style.backgroundColor = "white"
           }
           foodFun()
-          console.log(`this is food :${food}`)
+          // console.log(`this is food :${food}`)
           drawSnake()
-          console.log(`this is interval id: ${intrevalId}`)
+          // console.log(`this is interval id: ${intrevalId}`)
+          endGame()
+          console.log(`this is a ${mode(snake)}`)
         }, 150)
       }
     }
@@ -136,6 +144,28 @@ const clearIntervalMove = () => {
       clearInterval(intrevalId)
     }
   })
+}
+
+const mode = (arr) => {
+  const count = {}
+  for (let num of arr) {
+    if (count[num]) {
+      return true
+    }
+    count[num] = 1
+  }
+  return false
+}
+
+// const arr = [1, 2,2, 3, 4, 5, 6, 7]
+// console.log(mode(arr))
+
+const endGame = () => {
+  if (mode(snake)) {
+    console.log("Game Over: Snake bit itself!")
+    clearInterval(intrevalId)
+    gameIsRunning = false
+  }
 }
 
 initializeGame()
