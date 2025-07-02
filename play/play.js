@@ -3,11 +3,11 @@ const rows = 14
 const columns = 14
 const totalRowsColumns = rows * columns
 const totalboxes = []
-let snake = [0, 1, 2, 3]
+let snake = [0, 1, 2]
 let intrevalId
-let food
+let food = Math.floor(Math.random() * totalRowsColumns)
 
-const button = document.querySelectorAll("button")
+const button = document.querySelector("button")
 //// creating cells for board game
 for (let i = 0; i < rows * columns; i++) {
   const newEl = document.createElement("div")
@@ -49,8 +49,9 @@ const initializeGame = () => {
   foodFun()
   clearIntervalMove()
   moveSnake()
-}
 
+  console.log(food)
+}
 const drawSnake = () => {
   snake.forEach((nums) => {
     boxes[nums].style.backgroundColor = "yellow"
@@ -60,8 +61,13 @@ const drawSnake = () => {
 // drawSnake()
 
 const foodFun = () => {
-  food = [Math.floor(Math.random() * totalRowsColumns)]
   boxes[food].style.backgroundColor = "red"
+  const head = snake[snake.length - 1]
+  if (head === food) {
+    food = Math.floor(Math.random() * totalRowsColumns)
+    boxes[food].style.backgroundColor = "red"
+    snake.unshift(snake[0])
+  }
 }
 
 // foodFun()
@@ -70,6 +76,7 @@ const changeDirection = (direction, key) => {
   document.addEventListener("keypress", (event) => {
     if (event.keyCode === key) {
       const head = snake[snake.length - 1] + direction
+
       const secondPart = snake[snake.length - 2]
       if (head !== secondPart) {
         intrevalId = setInterval(() => {
@@ -81,9 +88,11 @@ const changeDirection = (direction, key) => {
           } else {
             boxes[tail].style.backgroundColor = "white"
           }
+          foodFun()
+          console.log(`this is food :${food}`)
           drawSnake()
           console.log(`this is interval id: ${intrevalId}`)
-        }, 100)
+        }, 150)
       }
     }
   })
@@ -210,3 +219,12 @@ initializeGame()
 // ]
 
 // console.log(keyButton[0].key)
+
+// const generateRandomFood = () => {
+//   button.addEventListener("click", () => {
+//     food = [Math.floor(Math.random() * totalRowsColumns)]
+//     boxes[food].style.backgroundColor = "red"
+//     console.log(food)
+//   })
+// }
+// generateRandomFood()
