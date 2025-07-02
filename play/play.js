@@ -5,6 +5,7 @@ const totalRowsColumns = rows * columns
 const totalboxes = []
 let snake = [0, 1, 2, 3]
 let intrevalId
+let food
 
 const button = document.querySelectorAll("button")
 //// creating cells for board game
@@ -59,7 +60,7 @@ const drawSnake = () => {
 // drawSnake()
 
 const foodFun = () => {
-  let food = [Math.floor(Math.random() * totalRowsColumns)]
+  food = [Math.floor(Math.random() * totalRowsColumns)]
   boxes[food].style.backgroundColor = "red"
 }
 
@@ -82,7 +83,7 @@ const changeDirection = (direction, key) => {
           }
           drawSnake()
           console.log(`this is interval id: ${intrevalId}`)
-        }, 1000)
+        }, 100)
       }
     }
   })
@@ -109,13 +110,20 @@ const moveSnake = () => {
 
 const clearIntervalMove = () => {
   document.addEventListener("keypress", (event) => {
-    if (event.keyCode === 100) {
+    const directionRight = snake[snake.length - 1] + 1 //D = 100
+    const directionDown = snake[snake.length - 1] + 14 //S = 115
+    const directionUp = snake[snake.length - 1] - 14 //W = 119
+    const directionLeft = snake[snake.length - 1] - 1 // A = 97
+
+    const secondPart = snake[snake.length - 2]
+
+    if (event.keyCode === 100 && directionRight !== secondPart) {
       clearInterval(intrevalId)
-    } else if (event.keyCode === 119) {
+    } else if (event.keyCode === 119 && directionUp !== secondPart) {
       clearInterval(intrevalId)
-    } else if (event.keyCode === 97) {
+    } else if (event.keyCode === 97 && directionLeft !== secondPart) {
       clearInterval(intrevalId)
-    } else if (event.keyCode === 115) {
+    } else if (event.keyCode === 115 && directionDown !== secondPart) {
       clearInterval(intrevalId)
     }
   })
