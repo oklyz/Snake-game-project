@@ -15,6 +15,10 @@ body {
 
 nav {
   grid: "nav";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 main {
@@ -31,4 +35,18 @@ main {
   display: grid;
   grid-template-rows: repeat(14, 1fr);
   grid-template-columns: repeat(14, 1fr);
+}
+
+a {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+button {
+  margin: 10px;
+}
+
+span {
+  margin: 20px;
 }

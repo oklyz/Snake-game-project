@@ -11,7 +11,7 @@ let scorePlayer = 0
 let sco = 1
 const bestScore = []
 const score = document.querySelector("#score")
-
+const button = document.querySelector("button")
 const heighestScore = document.querySelector("#score2")
 //// creating cells for board game
 for (let i = 0; i < rows * columns; i++) {
@@ -141,10 +141,11 @@ const moveSnake = () => {
 
 const clearIntervalMove = () => {
   document.addEventListener("keypress", (event) => {
-    const directionRight = snake[snake.length - 1] + 1 //D = 100
-    const directionDown = snake[snake.length - 1] + 14 //S = 115
-    const directionUp = snake[snake.length - 1] - 14 //W = 119
-    const directionLeft = snake[snake.length - 1] - 1 // A = 97
+    const head = snake[snake.length - 1]
+    const directionRight = head + 1 //D = 100
+    const directionDown = head + 14 //S = 115
+    const directionUp = head - 14 //W = 119
+    const directionLeft = head - 1 // A = 97
 
     const secondPart = snake[snake.length - 2]
 
@@ -191,7 +192,25 @@ const endGame = () => {
   }
 }
 
+const reset = () => {
+  clearInterval(intrevalId)
+  gameIsRunning = false
+  scorePlayer = 0
+  sco = 1
+  snake = [0, 1, 2]
+  blackFilter.forEach((nums) => {
+    boxes[nums].style.backgroundColor = "black"
+  })
+  whiteFilter.forEach((nums) => {
+    boxes[nums].style.backgroundColor = "white"
+  })
+  score.innerText = scorePlayer
+  drawSnake()
+  foodFun()
+}
+
 initializeGame()
+button.addEventListener("click", reset)
 // console.log(snake[snake.length - 1] + 1)
 // console.log(snake)
 
