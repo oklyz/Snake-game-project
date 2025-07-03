@@ -7,18 +7,18 @@ body {
   display: grid;
   grid-template-rows: 100px 1fr;
   grid-template-areas:
-    'nav'
-    'main';
+    "nav"
+    "main";
   background-color: aqua;
   height: 100vh;
 }
 
 nav {
-  grid: 'nav';
+  grid: "nav";
 }
 
 main {
-  grid: 'main';
+  grid: "main";
   display: flex;
 
   justify-content: center;

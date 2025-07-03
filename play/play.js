@@ -7,8 +7,10 @@ let snake = [0, 1, 2]
 let intrevalId
 let food = Math.floor(Math.random() * totalRowsColumns)
 let gameIsRunning = true
+let scorePlayer = 0
 
-const button = document.querySelector("button")
+const score = document.querySelector("#score")
+
 //// creating cells for board game
 for (let i = 0; i < rows * columns; i++) {
   const newEl = document.createElement("div")
@@ -68,9 +70,11 @@ const foodFun = () => {
   if (head === food) {
     food = Math.floor(Math.random() * totalRowsColumns)
     boxes[food].style.backgroundColor = "red"
+    scorePlayer++
+    score.innerText = scorePlayer
     if (snake[0] - 1 !== snake[1]) {
       snake.unshift(snake[0] - 1)
-    } else {
+    } else if (snake[0] + 1 !== snake[1]) {
       snake.unshift(snake[0] + 1)
     }
   }
@@ -88,7 +92,7 @@ const changeDirection = (direction, key) => {
         intrevalId = setInterval(() => {
           const tail = snake.shift()
           snake.push(snake[snake.length - 1] + direction)
-          console.log(snake)
+          // console.log(snake)
           if (blackFilter.includes(tail)) {
             boxes[tail].style.backgroundColor = "black"
           } else {
@@ -96,10 +100,14 @@ const changeDirection = (direction, key) => {
           }
           foodFun()
           // console.log(`this is food :${food}`)
+
+          // console.log(`this is a food: ${food}`)
+          // console.log(`this is a head of snake: ${snake[snake.length - 1]}`)
+
           drawSnake()
           // console.log(`this is interval id: ${intrevalId}`)
           endGame()
-          console.log(`this is a ${mode(snake)}`)
+          // console.log(`this is a ${mode(snake)}`)
         }, 150)
       }
     }
@@ -157,12 +165,16 @@ const mode = (arr) => {
   return false
 }
 
-// const arr = [1, 2,2, 3, 4, 5, 6, 7]
+// const arr = [0, 0, 1, 2, 3, 4, 5, 6, 7]
 // console.log(mode(arr))
 
 const endGame = () => {
   if (mode(snake)) {
-    console.log("Game Over: Snake bit itself!")
+    console.log(alert("Game Over: Snake bit itself!"))
+    clearInterval(intrevalId)
+    gameIsRunning = false
+  } else if (snake[snake.length - 1] < 0 || snake[snake.length - 1] > 196) {
+    console.log(alert("Game over: Snake out of board!"))
     clearInterval(intrevalId)
     gameIsRunning = false
   }
