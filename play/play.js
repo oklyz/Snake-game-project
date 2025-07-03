@@ -8,9 +8,11 @@ let intrevalId
 let food = Math.floor(Math.random() * totalRowsColumns)
 let gameIsRunning = true
 let scorePlayer = 0
-
+let sco = 1
+const bestScore = []
 const score = document.querySelector("#score")
 
+const heighestScore = document.querySelector("#score2")
 //// creating cells for board game
 for (let i = 0; i < rows * columns; i++) {
   const newEl = document.createElement("div")
@@ -67,16 +69,20 @@ const drawSnake = () => {
 const foodFun = () => {
   boxes[food].style.backgroundColor = "red"
   const head = snake[snake.length - 1]
+
   if (head === food) {
     food = Math.floor(Math.random() * totalRowsColumns)
     boxes[food].style.backgroundColor = "red"
+
     scorePlayer++
+    const increase = sco++
+
+    bestScore.push(increase)
+    // console.log(bestScore)
+    heighestScore.innerText = Math.max(...bestScore, 0)
     score.innerText = scorePlayer
-    if (snake[0] - 1 !== snake[1]) {
-      snake.unshift(snake[0] - 1)
-    } else if (snake[0] + 1 !== snake[1]) {
-      snake.unshift(snake[0] + 1)
-    }
+
+    snake.unshift(snake[0])
   }
 }
 
@@ -156,7 +162,8 @@ const clearIntervalMove = () => {
 
 const mode = (arr) => {
   const count = {}
-  for (let num of arr) {
+  for (let i = 1; i < arr.length; i++) {
+    const num = arr[i]
     if (count[num]) {
       return true
     }
@@ -169,14 +176,18 @@ const mode = (arr) => {
 // console.log(mode(arr))
 
 const endGame = () => {
+  const head = snake[snake.length - 1]
+  const tail = snake[0]
   if (mode(snake)) {
     console.log(alert("Game Over: Snake bit itself!"))
     clearInterval(intrevalId)
     gameIsRunning = false
-  } else if (snake[snake.length - 1] < 0 || snake[snake.length - 1] > 196) {
-    console.log(alert("Game over: Snake out of board!"))
+    return
+  } else if (head === tail) {
+    console.log(alert("Game Over: Snake bit itself!"))
     clearInterval(intrevalId)
     gameIsRunning = false
+    return
   }
 }
 
