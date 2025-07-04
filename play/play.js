@@ -52,10 +52,11 @@ whiteFilter.forEach((nums) => {
 const initializeGame = () => {
   drawSnake()
   foodFun()
+  clearIntervalMove()
   if (gameIsRunning) {
-    clearIntervalMove()
     moveSnake()
   }
+
   console.log(food)
 }
 const drawSnake = () => {
@@ -90,9 +91,9 @@ const foodFun = () => {
 
 const changeDirection = (direction, key) => {
   document.addEventListener("keypress", (event) => {
+    if (!gameIsRunning) return
     if (event.keyCode === key) {
       const head = snake[snake.length - 1] + direction
-
       const secondPart = snake[snake.length - 2]
       if (head !== secondPart) {
         intrevalId = setInterval(() => {
@@ -109,10 +110,12 @@ const changeDirection = (direction, key) => {
 
           // console.log(`this is a food: ${food}`)
           // console.log(`this is a head of snake: ${snake[snake.length - 1]}`)
-
-          drawSnake()
-          // console.log(`this is interval id: ${intrevalId}`)
           endGame()
+
+          if (gameIsRunning) {
+            drawSnake()
+          }
+          // console.log(`this is interval id: ${intrevalId}`)
           // console.log(`this is a ${mode(snake)}`)
         }, 150)
       }
@@ -194,7 +197,7 @@ const endGame = () => {
 
 const reset = () => {
   clearInterval(intrevalId)
-  gameIsRunning = false
+  gameIsRunning = true
   scorePlayer = 0
   sco = 1
   snake = [0, 1, 2]
@@ -207,8 +210,8 @@ const reset = () => {
   score.innerText = scorePlayer
   drawSnake()
   foodFun()
+  initializeGame()
 }
-
 initializeGame()
 button.addEventListener("click", reset)
 // console.log(snake[snake.length - 1] + 1)
