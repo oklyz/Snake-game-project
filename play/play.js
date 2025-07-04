@@ -94,8 +94,8 @@ const changeDirection = (direction, key) => {
     if (!gameIsRunning) return
     if (event.keyCode === key) {
       const head = snake[snake.length - 1] + direction
-      const secondPart = snake[snake.length - 2]
-      if (head !== secondPart) {
+      const prevHead = snake[snake.length - 2]
+      if (head !== prevHead) {
         intrevalId = setInterval(() => {
           const tail = snake.shift()
           snake.push(snake[snake.length - 1] + direction)
@@ -193,6 +193,31 @@ const endGame = () => {
     gameIsRunning = false
     return
   }
+
+  const col = head % columns
+
+  if (head < 0 || head >= totalRowsColumns || col < 0 || col >= columns) {
+    alert("Game Over: Snake hit the Wall!")
+    clearInterval(intrevalId)
+    gameIsRunning = false
+    return
+  }
+  const prevHead = snake[snake.length - 2]
+  if (prevHead !== undefined) {
+    const prevRow = Math.floor(prevHead / columns)
+    const newRow = Math.floor(head / columns)
+    const rowChanged = prevRow !== newRow
+
+    const colDiff = Math.abs(head - prevHead)
+    const movedHorizontally = colDiff === 1
+
+    if (movedHorizontally && rowChanged) {
+      alert("Game Over: Snake hit the wall!")
+      clearInterval(intrevalId)
+      gameIsRunning = false
+      return
+    }
+  }
 }
 
 const reset = () => {
@@ -212,6 +237,7 @@ const reset = () => {
   foodFun()
   initializeGame()
 }
+// console.log(15 % 14)
 initializeGame()
 button.addEventListener("click", reset)
 // console.log(snake[snake.length - 1] + 1)
