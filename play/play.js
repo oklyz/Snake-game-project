@@ -9,6 +9,7 @@ let food = Math.floor(Math.random() * totalRowsColumns)
 let gameIsRunning = true
 let scorePlayer = 0
 let sco = 1
+let speed = 200
 const bestScore = []
 const score = document.querySelector("#score")
 const button = document.querySelector("button")
@@ -115,9 +116,10 @@ const changeDirection = (direction, key) => {
           if (gameIsRunning) {
             drawSnake()
           }
+          // increaseSpeed()
           // console.log(`this is interval id: ${intrevalId}`)
           // console.log(`this is a ${mode(snake)}`)
-        }, 150)
+        }, speed)
       }
     }
   })
@@ -222,6 +224,7 @@ const endGame = () => {
 
 const reset = () => {
   clearInterval(intrevalId)
+  speed = 200
   gameIsRunning = true
   scorePlayer = 0
   sco = 1
@@ -236,6 +239,16 @@ const reset = () => {
   drawSnake()
   foodFun()
   initializeGame()
+}
+
+const increaseSpeed = () => {
+  if (scorePlayer === 10) {
+    speed = 150
+  } else if (scorePlayer === 20) {
+    speed = 100
+  } else if (scorePlayer === 30) {
+    speed = 70
+  }
 }
 // console.log(15 % 14)
 initializeGame()
