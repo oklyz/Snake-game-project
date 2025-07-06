@@ -106,6 +106,7 @@ const changeDirection = (direction, key) => {
           } else {
             boxes[tail].style.backgroundColor = "white"
           }
+          cheackDifficalty()
           foodFun()
           // console.log(`this is food :${food}`)
 
@@ -243,11 +244,11 @@ const reset = () => {
 
 const increaseSpeed = () => {
   if (scorePlayer === 10) {
-    speed = 150
+    speed = 200
   } else if (scorePlayer === 20) {
-    speed = 100
+    speed = 150
   } else if (scorePlayer === 30) {
-    speed = 70
+    speed = 100
   }
 }
 // console.log(15 % 14)
