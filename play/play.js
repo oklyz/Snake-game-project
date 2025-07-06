@@ -20,6 +20,7 @@ for (let i = 0; i < rows * columns; i++) {
   newEl.setAttribute("class", "boxes")
   container.append(newEl)
 }
+const body = document.querySelector("body")
 
 //// make a new array that are equal to boxes length to fillter them after
 const boxes = document.querySelectorAll(".boxes")
@@ -36,22 +37,13 @@ const blackFilter = totalboxes.filter((nums) => {
   return (row + col) % 2 === 0
 })
 
-blackFilter.forEach((nums) => {
-  boxes[nums].style.backgroundColor = "black"
-})
-
 const whiteFilter = totalboxes.filter((nums) => {
   const row = Math.floor(nums / columns)
   const col = nums % columns
   return (row + col) % 2 !== 0
 })
 
-whiteFilter.forEach((nums) => {
-  boxes[nums].style.backgroundColor = "white"
-})
-
 const initializeGame = () => {
-  drawSnake()
   foodFun()
   clearIntervalMove()
   if (gameIsRunning) {
@@ -59,11 +51,6 @@ const initializeGame = () => {
   }
 
   console.log(food)
-}
-const drawSnake = () => {
-  snake.forEach((nums) => {
-    boxes[nums].style.backgroundColor = "yellow"
-  })
 }
 
 // drawSnake()
@@ -102,9 +89,9 @@ const changeDirection = (direction, key) => {
           snake.push(snake[snake.length - 1] + direction)
           // console.log(snake)
           if (blackFilter.includes(tail)) {
-            boxes[tail].style.backgroundColor = "black"
+            boxes[tail].style.backgroundColor = blackFilterColor
           } else {
-            boxes[tail].style.backgroundColor = "white"
+            boxes[tail].style.backgroundColor = whiteFilterColor
           }
           cheackDifficalty()
           foodFun()
@@ -231,10 +218,10 @@ const reset = () => {
   sco = 1
   snake = [0, 1, 2]
   blackFilter.forEach((nums) => {
-    boxes[nums].style.backgroundColor = "black"
+    boxes[nums].style.backgroundColor = blackFilterColor
   })
   whiteFilter.forEach((nums) => {
-    boxes[nums].style.backgroundColor = "white"
+    boxes[nums].style.backgroundColor = whiteFilterColor
   })
   score.innerText = scorePlayer
   drawSnake()
@@ -253,6 +240,7 @@ const increaseSpeed = () => {
 }
 // console.log(15 % 14)
 initializeGame()
+
 button.addEventListener("click", reset)
 // console.log(snake[snake.length - 1] + 1)
 // console.log(snake)

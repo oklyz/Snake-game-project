@@ -9,7 +9,7 @@ body {
   grid-template-areas:
     "nav"
     "main";
-  background-color: aqua;
+  background-color: #ffcad4;
   height: 100vh;
 }
 
@@ -49,4 +49,8 @@ button {
 
 span {
   margin: 20px;
+}
+
+h3 {
+  color: black;
 }

@@ -1,7 +1,3 @@
-const changeColor = document.querySelector("#change-Color")
-
-const arrayColor = []
-
 const pictures = [
   {
     name: "Retro Neon",
@@ -77,57 +73,29 @@ const pictures = [
   },
 ]
 
-for (let i = 0; i < 9; i++) {
-  arrayColor.push(i)
-}
+let blackFilterColor, whiteFilterColor, backGround, snakeColor
 
-arrayColor.forEach((i) => {
-  const createDiv = document.createElement("div")
-  createDiv.setAttribute("class", "color")
-  const createImages = document.createElement("img")
-  createImages.setAttribute("data-id", i)
-  createDiv.append(createImages)
-  changeColor.append(createDiv)
-})
-
-const images = document.querySelectorAll("img")
-
-// color.forEach((picture) => {
-//   picture.
-// })
-
-pictures.forEach((picture, index) => {
-  images[index].setAttribute("src", picture.img)
-})
-
-// console.log(pictures[0].img)
-// const saveColor =
-
-const saveDecoration = localStorage.getItem("decoration")
-
-images.forEach((picture) => {
-  if (picture.dataset.id === saveDecoration) {
-    picture.style.borderColor = "green"
-  }
-  picture.addEventListener("click", () => {
-    images.forEach((img) => {
-      img.style.borderColor = "black"
-    })
-
-    picture.style.borderColor = "green"
-
-    localStorage.setItem("decoration", picture.dataset.id)
-    changeDecoration()
+const drawSnake = () => {
+  snake.forEach((nums) => {
+    boxes[nums].style.backgroundColor = snakeColor
   })
-})
-
-let backGround, snakeColor
+}
 
 const changeDecoration = () => {
   const selected = localStorage.getItem("decoration")
   if (selected !== null && pictures[selected]) {
     const theme = pictures[selected]
+    blackFilterColor = theme.blackfilter
+    blackFilter.forEach((nums) => {
+      boxes[nums].style.backgroundColor = blackFilterColor
+    })
+    whiteFilterColor = theme.whitefilter
+    whiteFilter.forEach((nums) => {
+      boxes[nums].style.backgroundColor = whiteFilterColor
+    })
     backGround = theme.background
+    snakeColor = theme.snakecolor
+    drawSnake()
     document.body.style.backgroundColor = backGround
   }
 }

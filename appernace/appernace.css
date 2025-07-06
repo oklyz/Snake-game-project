@@ -11,6 +11,27 @@ body {
 
 main {
   display: flex;
+
   justify-content: center;
   align-items: center;
+}
+
+#change-Color {
+  height: 70vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  height: 75%;
+  width: 75%;
+  border: 5px solid;
 }
