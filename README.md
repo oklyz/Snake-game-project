@@ -16,7 +16,7 @@ It's about when the snake eats food, it gets bigger each time. The purpose of th
 
 ### description
 
-\_Fist of all, I will initialize framework files then, I will move on to establish environment where snake respond in, the designe of environment will be cheack Board pattern then I will draw snake and it food, after that I want to establish controll system for snake movment, and also if snake eats it self or snake hits the wall its game over. The game have difficulty which are three leves based on player choice, this is all about snake game. player can change the designe to make his/her eyes comfortable when playing the game
+\_Fist of all, I will initialize framework files then, I will move on to establish environment where snake respond in, the designe of environment will be cheack Board pattern then I will draw snake and it food, after that I want to establish controll system for snake movment, and also if snake eats it self or snake hits the wall its game over. The game have difficulty which are four leves based on player choice, this is all about snake game. player can change the designe to make his/her eyes comfortable when playing the game
 
 # Technology used
 

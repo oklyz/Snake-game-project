@@ -1,3 +1,4 @@
+//// variables
 const changeColor = document.querySelector("#change-Color")
 
 const arrayColor = []
@@ -77,10 +78,11 @@ const pictures = [
   },
 ]
 
+//// create array that contain all divs
 for (let i = 0; i < 9; i++) {
   arrayColor.push(i)
 }
-
+//// create the nacessary tags and put inside of them images
 arrayColor.forEach((i) => {
   const createDiv = document.createElement("div")
   createDiv.setAttribute("class", "color")
@@ -92,17 +94,11 @@ arrayColor.forEach((i) => {
 
 const images = document.querySelectorAll("img")
 
-// color.forEach((picture) => {
-//   picture.
-// })
-
 pictures.forEach((picture, index) => {
   images[index].setAttribute("src", picture.img)
 })
 
-// console.log(pictures[0].img)
-// const saveColor =
-
+//// check the chosen decoration and save it in saveDecoration variables
 const saveDecoration = localStorage.getItem("decoration")
 
 images.forEach((picture) => {
@@ -121,6 +117,7 @@ images.forEach((picture) => {
   })
 })
 
+//// apply decoration on appernace.html page
 let backGround, snakeColor
 
 const changeDecoration = () => {

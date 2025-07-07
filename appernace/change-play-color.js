@@ -1,3 +1,5 @@
+//// variables
+
 const pictures = [
   {
     name: "Retro Neon",
@@ -75,11 +77,13 @@ const pictures = [
 
 let blackFilterColor, whiteFilterColor, backGround, snakeColor
 
+//// draw snake in the cheack board. (I moved drawSnake function to here becuase I'm getting erro when i tried to connect this file with play.html)
 const drawSnake = () => {
   snake.forEach((nums) => {
     boxes[nums].style.backgroundColor = snakeColor
   })
 }
+//// apply decoration on play.html page
 
 const changeDecoration = () => {
   const selected = localStorage.getItem("decoration")

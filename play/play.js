@@ -1,3 +1,4 @@
+//// variables that I used to make snake game
 const container = document.querySelector(".container")
 const rows = 14
 const columns = 14
@@ -30,7 +31,7 @@ boxes.forEach(() => {
   totalboxes.push(i)
   i += 1
 })
-
+//// make cheackboard algorithm as a filter
 const blackFilter = totalboxes.filter((nums) => {
   const row = Math.floor(nums / columns)
   const col = nums % columns
@@ -42,19 +43,15 @@ const whiteFilter = totalboxes.filter((nums) => {
   const col = nums % columns
   return (row + col) % 2 !== 0
 })
-
+//// function that control the whole game
 const initializeGame = () => {
   foodFun()
   clearIntervalMove()
   if (gameIsRunning) {
     moveSnake()
   }
-
-  console.log(food)
 }
-
-// drawSnake()
-
+//// function that spawn food and check if the head is equal to food as a result it increase snake lenght and score
 const foodFun = () => {
   boxes[food].style.backgroundColor = "red"
   const head = snake[snake.length - 1]
@@ -67,52 +64,40 @@ const foodFun = () => {
     const increase = sco++
 
     bestScore.push(increase)
-    // console.log(bestScore)
     heighestScore.innerText = Math.max(...bestScore, 0)
     score.innerText = scorePlayer
 
     snake.unshift(snake[0])
   }
 }
-
-// foodFun()
-
+//// function that gives snake ability to change there direction
 const changeDirection = (direction, key) => {
   document.addEventListener("keypress", (event) => {
     if (!gameIsRunning) return
     if (event.keyCode === key) {
-      const head = snake[snake.length - 1] + direction
+      const newhead = snake[snake.length - 1] + direction
       const prevHead = snake[snake.length - 2]
-      if (head !== prevHead) {
+      if (newhead !== prevHead) {
         intrevalId = setInterval(() => {
           const tail = snake.shift()
           snake.push(snake[snake.length - 1] + direction)
-          // console.log(snake)
           if (blackFilter.includes(tail)) {
             boxes[tail].style.backgroundColor = blackFilterColor
           } else {
             boxes[tail].style.backgroundColor = whiteFilterColor
           }
-          cheackDifficalty()
+          checkDifficalty()
           foodFun()
-          // console.log(`this is food :${food}`)
-
-          // console.log(`this is a food: ${food}`)
-          // console.log(`this is a head of snake: ${snake[snake.length - 1]}`)
           endGame()
-
           if (gameIsRunning) {
             drawSnake()
           }
-          // increaseSpeed()
-          // console.log(`this is interval id: ${intrevalId}`)
-          // console.log(`this is a ${mode(snake)}`)
         }, speed)
       }
     }
   })
 }
-
+//// function that control snake movement
 const moveSnake = () => {
   const directionRight = 1 //D = 100
   const directionDown = 14 //S = 115
@@ -131,7 +116,7 @@ const moveSnake = () => {
     changeDirection(dire, key)
   })
 }
-
+//// function that clear previous action
 const clearIntervalMove = () => {
   document.addEventListener("keypress", (event) => {
     const head = snake[snake.length - 1]
@@ -153,7 +138,7 @@ const clearIntervalMove = () => {
     }
   })
 }
-
+//// function that check if any length of snake are duplicated excepet the first index
 const mode = (arr) => {
   const count = {}
   for (let i = 1; i < arr.length; i++) {
@@ -165,10 +150,7 @@ const mode = (arr) => {
   }
   return false
 }
-
-// const arr = [0, 0, 1, 2, 3, 4, 5, 6, 7]
-// console.log(mode(arr))
-
+//// function that handle end game logic
 const endGame = () => {
   const head = snake[snake.length - 1]
   const tail = snake[0]
@@ -209,7 +191,7 @@ const endGame = () => {
     }
   }
 }
-
+//// function to reset the game
 const reset = () => {
   clearInterval(intrevalId)
   speed = 200
@@ -228,7 +210,7 @@ const reset = () => {
   foodFun()
   initializeGame()
 }
-
+//// function to increase speed incrementally
 const increaseSpeed = () => {
   if (scorePlayer === 10) {
     speed = 200
@@ -238,96 +220,6 @@ const increaseSpeed = () => {
     speed = 100
   }
 }
-// console.log(15 % 14)
 initializeGame()
-
+//// button to reset the game
 button.addEventListener("click", reset)
-// console.log(snake[snake.length - 1] + 1)
-// console.log(snake)
-
-// button[0].addEventListener('click', () => {
-//   const cannotTurnRight = snake[snake.length - 1] + 1
-//   if (cannotTurnRight !== snake[snake.length - 2]) {
-//     const shift = snake.shift()
-//     snake.push(snake[snake.length - 1] + 1)
-//     if (blackFilter.includes(shift)) {
-//       boxes[shift].style.backgroundColor = 'black'
-//     } else {
-//       boxes[shift].style.backgroundColor = 'white'
-//     }
-//     drawSnake()
-//   }
-// })
-// button[1].addEventListener('click', () => {
-//   const cannotTurnleft = snake[snake.length - 1] - 1
-//   if (cannotTurnleft !== snake[snake.length - 2]) {
-//     const shift = snake.shift()
-//     snake.push(snake[snake.length - 1] - 1)
-
-//     if (blackFilter.includes(shift)) {
-//       boxes[shift].style.backgroundColor = 'black'
-//     } else {
-//       boxes[shift].style.backgroundColor = 'white'
-//     }
-//   }
-//   drawSnake()
-// })
-// button[2].addEventListener('click', () => {
-//   const cannotTurnDown = snake[snake.length - 1] + 14
-//   if (cannotTurnDown !== snake[snake.length - 2]) {
-//     const shift = snake.shift()
-//     snake.push(snake[snake.length - 1] + 14)
-//     if (blackFilter.includes(shift)) {
-//       boxes[shift].style.backgroundColor = 'black'
-//     } else {
-//       boxes[shift].style.backgroundColor = 'white'
-//     }
-//     drawSnake()
-//   }
-// })
-// button[3].addEventListener('click', () => {
-//   const cannotTurnUp = snake[snake.length - 1] - 14
-//   if (cannotTurnUp !== snake[snake.length - 2]) {
-//     const shift = snake.shift()
-//     snake.push(snake[snake.length - 1] - 14)
-//     if (blackFilter.includes(shift)) {
-//       boxes[shift].style.backgroundColor = 'black'
-//     } else {
-//       boxes[shift].style.backgroundColor = 'white'
-//     }
-//     drawSnake()
-//   }
-// })
-
-// document.addEventListener('keypress', (event) => {
-//   console.log('key code: ', event.keyCode)
-// })
-// snake.shift()
-// snake.push(snake[snake.length] + 1)
-
-// console.log(snake[snake.length] + 1)
-
-// console.log(KeyboardEvent.key)
-
-// const directionRight = 1 //D = 100
-// const directionDown = 14 //S = 115
-// const directionUp = -14 //W = 119
-// const directionLeft = -1 // A = 97
-
-// const keyButton = [
-//   { key: 97, direction: directionLeft },
-//   { key: 119, direction: directionUp },
-//   { key: 115, direction: directionDown },
-//   { key: 100, direction: directionRight },
-// ]
-
-// console.log(keyButton[0].key)
-
-// const generateRandomFood = () => {
-//   button.addEventListener("click", () => {
-//     food = [Math.floor(Math.random() * totalRowsColumns)]
-//     boxes[food].style.backgroundColor = "red"
-//     console.log(food)
-//   })
-// }
-// generateRandomFood()

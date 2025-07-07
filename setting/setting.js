@@ -1,5 +1,7 @@
+//// variables
 const mod = document.querySelectorAll(".difficulty")
 
+//// check the game mode and store it in saveDifficulty variable
 const saveDifficulty = localStorage.getItem("difficulty")
 
 mod.forEach((nums) => {
@@ -18,7 +20,8 @@ mod.forEach((nums) => {
   })
 })
 
-const cheackDifficalty = () => {
+//// change speed based on difficulty
+const checkDifficalty = () => {
   if (saveDifficulty === "easy") {
     speed = 200
   } else if (saveDifficulty === "normal") {

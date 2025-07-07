@@ -1,3 +1,5 @@
+////variables
+
 const pictures = [
   {
     name: "Retro Neon",
@@ -72,7 +74,7 @@ const pictures = [
     snakecolor: "#0288d1",
   },
 ]
-
+//// apply decoration on settin.html and index.html pages
 let blackFilterColor, whiteFilterColor, backGround, snakeColor
 
 const changeDecoration = () => {
