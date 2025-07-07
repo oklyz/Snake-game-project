@@ -14,9 +14,9 @@ It's about when the snake eats food, it gets bigger each time. The purpose of th
 
 ![alt text](/img/image-1.png)
 
-### description
+### Description
 
-\_Fist of all, I will initialize framework files then, I will move on to establish environment where snake respond in, the designe of environment will be cheack Board pattern then I will draw snake and it food, after that I want to establish controll system for snake movment, and also if snake eats it self or snake hits the wall its game over. The game have difficulty which are four leves based on player choice, this is all about snake game. player can change the designe to make his/her eyes comfortable when playing the game
+Fist of all, I will initialize framework files then, I will move on to establish environment where snake respond in, the designe of environment will be cheack Board pattern then I will draw snake and it food, after that I want to establish controll system for snake movment, and also if snake eats it self or snake hits the wall its game over. The game have difficulty which are four leves based on player choice, this is all about snake game. player can change the designe to make his/her eyes comfortable when playing the game
 
 # Technology used
 
@@ -49,3 +49,23 @@ It's about when the snake eats food, it gets bigger each time. The purpose of th
 - Make function to check if snake eat it self or hit the Wall
 
 - Make function to count score
+
+# Description for functions/code that include Math
+
+---
+
+## Cheack board pattern
+
+![CheackBoard](/img/cheackboard-pattern.png)
+
+---
+
+## endGame function
+
+### Vertically end
+
+![Vertical-end](/img/vertical-end.png)
+
+### Horizontally end
+
+![Horizontal-end](/img/horizontal-end.png)

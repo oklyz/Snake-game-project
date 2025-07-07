@@ -166,9 +166,7 @@ const endGame = () => {
     return
   }
 
-  const col = head % columns
-
-  if (head < 0 || head >= totalRowsColumns || col < 0 || col >= columns) {
+  if (head < 0 || head >= totalRowsColumns) {
     alert("Game Over: Snake hit the Wall!")
     clearInterval(intrevalId)
     gameIsRunning = false
@@ -223,3 +221,4 @@ const increaseSpeed = () => {
 initializeGame()
 //// button to reset the game
 button.addEventListener("click", reset)
+console.log(15 % 14)
