@@ -71,4 +71,5 @@ Fist of all, I will initialize framework files then, I will move on to establish
 ### Horizontally end
 
 ![HorizontalEndCode](/img/HorizontalEndCode.png)
-![Horizontal-end](/img/horizontal-end1.png)
+
+![Horizontal-end](/img/Horizontal-end1.png)
