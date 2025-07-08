@@ -221,4 +221,3 @@ const increaseSpeed = () => {
 initializeGame()
 //// button to reset the game
 button.addEventListener("click", reset)
-console.log(15 % 14)
