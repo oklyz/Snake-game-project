@@ -56,7 +56,8 @@ Fist of all, I will initialize framework files then, I will move on to establish
 
 ## Cheack board pattern
 
-![CheackBoard](/img/cheackboard-pattern.png)
+![CheackBoardCode](/img/CheackBoardCode.png)
+![CheackBoard](/img/Cheack-board.png)
 
 ---
 
@@ -64,8 +65,10 @@ Fist of all, I will initialize framework files then, I will move on to establish
 
 ### Vertically end
 
+![VerticalEndCode](/img/VerticalEndCode.png)
 ![Vertical-end](/img/vertical-end.png)
 
 ### Horizontally end
 
-![Horizontal-end](/img/horizontal-end.png)
+![HorizontalEndCode](/img/HorizontalEndCode.png)
+![Horizontal-end](/img/horizontal-end1.png)
