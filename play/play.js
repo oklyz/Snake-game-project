@@ -155,19 +155,15 @@ const endGame = () => {
   const head = snake[snake.length - 1]
   const tail = snake[0]
   if (mode(snake)) {
-    console.log(alert("Game Over: Snake bit itself!"))
     clearInterval(intrevalId)
     gameIsRunning = false
     return
   } else if (head === tail) {
-    console.log(alert("Game Over: Snake bit itself!"))
     clearInterval(intrevalId)
     gameIsRunning = false
     return
   }
-
   if (head < 0 || head >= totalRowsColumns) {
-    alert("Game Over: Snake hit the Wall!")
     clearInterval(intrevalId)
     gameIsRunning = false
     return
@@ -182,7 +178,6 @@ const endGame = () => {
     const movedHorizontally = colDiff === 1
 
     if (movedHorizontally && rowChanged) {
-      alert("Game Over: Snake hit the wall!")
       clearInterval(intrevalId)
       gameIsRunning = false
       return
